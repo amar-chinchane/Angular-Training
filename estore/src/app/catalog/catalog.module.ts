@@ -9,6 +9,6 @@ import { InsertComponent } from './products/insert/insert.component';
   declarations: [],
   imports: [ CommonModule ,ListComponent,DetailsComponent,CounterComponent,InsertComponent],
 
-  exports: [  ListComponent, InsertComponent]
+  exports: [ ListComponent, InsertComponent]
 })
 export class CatalogModule { }
