@@ -2,21 +2,24 @@
   <h1>Login</h1>
 
    <div >   
-       <form >
+       <form #loginForm="ngForm"
+              (ngSubmit)="onSubmit(loginForm)"
+              novalidate>
         <table>
               <tr>
                 <td><label>Email:</label></td>
                 <td> 
-                  <input type="email" name="userEmail" 
-                         required  pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" />
+                  <input type="email" name="userEmail" [(ngModel)]="user.email" #userEmail="ngModel"
+                         required  pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"  />
               </tr>
               <tr>
                 <td><label>Password:</label></td>
-                <input type="password" name="userPassword" required />
+                <input type="password" name="userPassword" [(ngModel)]="user.password" #userPassword="ngModel" 
+  required />
               
               </tr>   
               <tr>
-                  <td><button type="submit" > Submit</button> </td>
+                  <td><button type="submit" [disabled]="!loginForm.form.valid"> Submit</button> </td>
               </tr>
         </table>
     </form>

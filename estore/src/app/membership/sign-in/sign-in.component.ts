@@ -21,5 +21,28 @@ export class SignInComponent {
  
   constructor(private svc:AuthService) {    }  //DI
 
- 
+  onSubmit(formData: any) {
+    const form = formData.form.value;
+   
+    console.log(form.userEmail);
+    console.log(form.userPassword);
+
+    this.isValidUser= this.svc.validate(form.userEmail,form.userPassword);
+    if(this.isValidUser) {console.log("Valid User !")}
+    else {console.log("Invalid User !")}
+
+    /*if (form.valid) {
+      console.log('Form submitted successfully!');
+      console.log('Email:', this.user.email);
+      console.log('Password:', this.user.password);
+
+      // ✅ Example: You can now call a service or perform login logic here
+      // this.authService.login(this.userEmail, this.userPassword).subscribe(...);
+
+      alert('Login successful!');
+    } else {
+      console.log('Form is invalid');
+      alert('Please fill all required fields correctly.');
+    }*/
+  }
 }
