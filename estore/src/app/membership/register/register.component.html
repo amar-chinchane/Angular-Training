@@ -1,0 +1,75 @@
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" novalidate>
+  <table>
+    <tr>
+      <td><label>First Name:</label></td>
+      <td><input type="text" name="firstName" [(ngModel)]="customerModel.firstName" required minlength="3" maxlength="8"></td>
+    </tr>
+
+    <tr>
+      <td><label>Last Name:</label></td>
+      <td><input type="text" name="lastName" [(ngModel)]="customerModel.lastName" required></td>
+    </tr>
+
+    <tr>
+      <td><label>Email:</label></td>
+      <td><input type="email" name="email" [(ngModel)]="customerModel.email" required></td>
+    </tr>
+
+    <tr>
+      <td><label>Birth Date:</label></td>
+      <td><input type="date" name="birthDate" [(ngModel)]="customerModel.birthDate" required></td>
+    </tr>
+
+    <tr>
+      <td><label>Age:</label></td>
+      <td><input type="number" name="age" [(ngModel)]="customerModel.age" required></td>
+    </tr>
+
+    <tr>
+      <td><label>Phone No:</label></td>
+      <td><input type="text" name="phoneNo" [(ngModel)]="customerModel.phoneNo" required></td>
+    </tr>
+
+    <tr>
+      <td><label>Location:</label></td>
+      <td>
+        <select name="location" [(ngModel)]="customerModel.location" required>
+          <option value="">Select</option>
+          <option>Pune</option>
+          <option>Mumbai</option>
+          <option>Bangalore</option>
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <td><label>Membership:</label></td>
+      <td>
+        <label><input type="radio" name="memberShip" [(ngModel)]="customerModel.memberShip" value="gold" required> Gold </label>
+        <label><input type="radio" name="memberShip" [(ngModel)]="customerModel.memberShip" value="silver" required> Silver </label>
+        <label><input type="radio" name="memberShip" [(ngModel)]="customerModel.memberShip" value="platinum" required> Platinum </label>
+      </td>
+    </tr>
+
+    <tr>
+      <td><label>Status:</label></td>
+      <td><input type="checkbox" name="isRegistered" [(ngModel)]="customerModel.isRegistered"> Is Registered</td>
+    </tr>
+
+    <tr>
+      <td><label>Source Of Information:</label></td>
+      <td>
+        <select multiple name="socialStatus" [(ngModel)]="customerModel.socialStatus">
+          <option>Facebook</option>
+          <option>Instagram</option>
+          <option>Twitter</option>
+          <option>LinkedIn</option>
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="2"><button type="submit">Submit</button></td>
+    </tr>
+  </table>
+</form>
