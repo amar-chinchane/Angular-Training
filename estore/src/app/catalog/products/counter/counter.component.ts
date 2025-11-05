@@ -25,5 +25,6 @@ export class CounterComponent {
       this.count--;
       this.update.emit({count:this.count});
     }
+   
 
 }
