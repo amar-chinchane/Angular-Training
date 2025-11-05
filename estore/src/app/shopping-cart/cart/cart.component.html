@@ -13,44 +13,25 @@
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>
+         <tbody *ngFor="let c of cartItems">
           <tr>
             <td class="text-center">
-              <img src="/assets/images/rose.jpg" width="60" height="60" class="rounded">
+              <img src="{{c.imageUrl}}" width="60" height="60" class="rounded">
             </td>
-            <td>rose</td>
-            <td class="text-end">₹ 15</td>
+            <td>{{c.title}}</td>
+            <td class="text-end">₹ {{c.price}}</td>
             <td class="text-center">
               <input type="number" class="form-control text-center mx-auto"
                      style="width: 80px;"
                      min="1" value="2"/>
             </td>
-            <td class="text-end">₹30</td>
+            <td class="text-end">₹{{c.quantity}}</td>
             <td class="text-center">
-              <button class="btn btn-sm btn-outline-danger">
+              <button class="btn btn-sm btn-outline-danger" (click)="removeItem(c.productId)">
                 <i class="bi bi-trash"></i> Remove
               </button>
             </td>
-          </tr>
-
-           <tr>
-            <td class="text-center">
-              <img src="/assets/images/lotus.jpg" width="60" height="60" class="rounded">
-            </td>
-            <td>lotus</td>
-            <td class="text-end">₹ 30</td>
-            <td class="text-center">
-              <input type="number" class="form-control text-center mx-auto"
-                     style="width: 80px;"
-                     min="1" value="4"/>
-            </td>
-            <td class="text-end">₹120</td>
-            <td class="text-center">
-              <button class="btn btn-sm btn-outline-danger">
-                <i class="bi bi-trash"></i> Remove
-              </button>
-            </td>
-          </tr>
+          </tr>           
         </tbody>
       </table>
     </div>

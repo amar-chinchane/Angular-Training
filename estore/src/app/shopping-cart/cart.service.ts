@@ -17,12 +17,20 @@ private storageKey = 'shoppingCart';
   //Add Product to Cart
   addToCart(item: CartItem): void {
      
+      const cartItems = JSON.parse(localStorage.getItem('CartItemsStorage') || '[]');
+     // let cartItems=[];
+      cartItems.push(item);
+      localStorage.setItem('CartItemsStorage', JSON.stringify(cartItems));
+
   }
 
   //Get All Cart Items
   getCartItems(): CartItem[] {
+    const cartItems = localStorage.getItem('CartItemsStorage');
+    const Items  = JSON.parse(cartItems!);
+    return Items;
+
     
-    return [];
   }
 
   //Update Quantity

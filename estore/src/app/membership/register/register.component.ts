@@ -12,7 +12,8 @@ import { Router } from '@angular/router';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  customerModel = new Customer('Ravi', 'Tambade', 'ravi.tambade@transflower.in', 9881735801, 28, new Date(1975, 18, 8), 'Pune', 'S', false, ['T', 'B']);
+   customerModel = new Customer('Amar', 'Chinchane', 'amar.chinchane@gmail.com',9158555470, 40, new Date(1984, 2, 3), 'Pune', 'S', false, ['T', 'B']);
+ // customerModel = new Customer();
   constructor(private router: Router) { }
 
   onSubmit(formData: any) {
@@ -33,7 +34,8 @@ export class RegisterComponent {
       alert('User registered successfully!');
 
       //this.router.navigate('/signin'); 
-      this.router.navigateByUrl('/signin');
+      //this.router.navigateByUrl('/signin');
+      this.router.navigateByUrl('/cartItems');
 
       // Reset form after saving
       formData.resetForm();

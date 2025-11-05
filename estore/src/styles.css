@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+.addtocart-btn {
+  background: url('assets/images/addtocart.png') no-repeat right;
+  
+  padding-left: 200px; /* space for icon */
+  height: 22px;
+  background-size: 40px;
+  border: 1px  #ccc;
+  border-radius: 1px;
+  padding-bottom: 50px;
+}
