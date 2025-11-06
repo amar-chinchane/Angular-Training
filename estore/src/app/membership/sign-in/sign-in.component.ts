@@ -18,7 +18,8 @@ export class Credential  {
 export class SignInComponent {
 
   isValidUser:boolean=false;
-  user: Credential=new Credential("ravi.tambade@transflower.in","seed");
+  user: Credential=new Credential("amar.chinchane@gmail.com","seed");
+  
  
   constructor(private svc:AuthService,private router: Router) {    }  //DI
 
@@ -32,6 +33,7 @@ export class SignInComponent {
     if(this.isValidUser) 
     {
       console.log("Valid User !");
+     // sessionStorage.setItem(this.storageKey, JSON.stringify(cart));
       this.router.navigateByUrl('/productList');
     }
     else {
@@ -40,4 +42,6 @@ export class SignInComponent {
     }
 
   }
+
+  goToRegister(): any {  this.router.navigateByUrl('/register');}
 }

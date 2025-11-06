@@ -1,5 +1,18 @@
-<h2>Welcome to the {{title}}!</h2>
-<hr/>
+<!-- Header Section -->
+<header class="app-header">
+  <div class="header-content">
+    <h1 class="app-title">Welcome to the {{title}}</h1>
+
+    <!-- Logout button only visible after login -->
+    <button
+      *ngIf="isLoggedIn"
+      class="logout-btn"
+      (click)="logout()"
+    >
+      Logout
+    </button>
+  </div>
+</header>
 
 <!--app-register></app-register>
 <app-sign-in></app-sign-in>

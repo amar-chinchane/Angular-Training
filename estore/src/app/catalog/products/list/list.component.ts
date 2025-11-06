@@ -37,5 +37,6 @@ export class ListComponent implements OnInit {
   {
     this.router.navigateByUrl('/cartItems');
   }
+  logout(){this.router.navigateByUrl('/signin')}
 
 }

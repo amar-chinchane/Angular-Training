@@ -1,21 +1,42 @@
-<!--<div>
-  <ul *ngFor="let p of products">  
-    <li>
-    <app-details [product] ="p" ></app-details>
-    </li>
-  </ul>
-</div>-->
 
+<!-- Header Section -->
+<header class="app-header">
+  <div class="header-content">
+    <h1 class="app-title">Product Store</h1>
 
-<div class="container mt-4"> <button class="addtocart-btn" (click)="redirect_to_cart()" ></button>
-  <div class="row">
-    <div class="col-md-4 mb-4" *ngFor="let p of products">
+    <div class="header-buttons">
+      <button class="btn-primary" (click)="redirect_to_cart()">
+        🛒 View Cart
+      </button>
+
+      <button class="logout-btn" (click)="logout()">
+        🚪 Logout
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Product List Section -->
+<div class="product-list-container">
+  <div class="product-grid">
+    <div class="product-card" *ngFor="let p of products">
+      <!--div class="product-image">
+        <img [src]="p.imageUrl || 'assets/default-product.jpg'" [alt]="p.name" />
+      </div>
+
+      <div class="product-info">
+        <h3 class="product-title">{{ p.name }}</h3>
+        <p class="product-desc">{{ p.description }}</p>
+        <p class="product-price">₹{{ p.price }}</p>
+      </div-->
       <div class="card shadow-sm h-100">
         <div class="card-body">
           <app-details [product]="p"></app-details>
         </div>
-         <button class="addtocart-btn" (click)="add_to_cart(p)"></button>
-      </div>
+        <button class="btn-addcart" (click)="add_to_cart(p)">
+        + Add to Cart
+      </button>
+      </div>      
     </div>
   </div>
 </div>
