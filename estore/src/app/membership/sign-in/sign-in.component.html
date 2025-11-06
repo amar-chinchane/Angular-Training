@@ -1,27 +1,49 @@
-<div >
-  <h1>Login</h1>
+<div class="login-container">
+  <div class="login-card">
+    <h2 class="login-title">Welcome Back</h2>
+    <p class="login-subtitle">Please sign in to your account</p>
 
-   <div >   
-       <form #loginForm="ngForm"
-              (ngSubmit)="onSubmit(loginForm)"
-              novalidate>
-        <table>
-              <tr>
-                <td><label>Email:</label></td>
-                <td> 
-                  <input type="email" name="userEmail" [(ngModel)]="user.email" #userEmail="ngModel"
-                         required  pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"  />
-              </tr>
-              <tr>
-                <td><label>Password:</label></td>
-                <input type="password" name="userPassword" [(ngModel)]="user.password" #userPassword="ngModel" 
-  required />
-              
-              </tr>   
-              <tr>
-                  <td><button type="submit" [disabled]="!loginForm.form.valid"> Submit</button> </td>
-              </tr>
-        </table>
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" novalidate>
+      <div class="form-group">
+        <label>Email</label>
+        <input
+          type="email"
+          name="userEmail"
+          [(ngModel)]="user.email"
+          #userEmail="ngModel"
+          required
+          placeholder="Enter your email"
+        />
+        <div class="error" *ngIf="userEmail.invalid && userEmail.touched">
+          Please enter a valid email address.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input
+          type="password"
+          name="userPassword"
+          [(ngModel)]="user.password"
+          #userPassword="ngModel"
+          required
+          placeholder="Enter your password"
+        />
+        <div class="error" *ngIf="userPassword.invalid && userPassword.touched">
+          Password is required.
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="!loginForm.form.valid" class="btn-primary">
+        Sign In
+      </button>
+
+      <div class="extra-actions">
+        <p>Don't have an account?</p>
+        <button type="button" class="btn-secondary" (click)="goToRegister()">
+          Register
+        </button>
+      </div>
     </form>
-    </div>
+  </div>
 </div>

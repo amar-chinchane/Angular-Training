@@ -10,7 +10,7 @@ export const routes: Routes = [
   { path: 'signin', component: SignInComponent },
   { path: 'productList', component: ListComponent },
   { path: 'cartItems', component: CartComponent },
-  { path: '', redirectTo: 'register', pathMatch: 'full' } // default route
+  { path: '', redirectTo: 'signin', pathMatch: 'full' } // default route
 
 ];
 
