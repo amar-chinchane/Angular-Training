@@ -9,7 +9,9 @@ import { AuthService } from '../../membership/auth.service';
 
 @Component({
   selector: 'app-cart',
+  standalone: true,
   templateUrl: './cart.component.html',
+  imports: [CommonModule,FormsModule],
   styleUrl: './cart.component.css'
 })
 export class CartComponent {
@@ -45,4 +47,9 @@ export class CartComponent {
     
     return this.cartService.getTotalPrice();
   }
+
+   checkout(){
+    this.router.navigateByUrl('/orders');
+  }
+
 }

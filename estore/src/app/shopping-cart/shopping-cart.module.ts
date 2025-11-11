@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [CartComponent],
+  declarations: [],
   imports: [CommonModule,FormsModule],
 })
 export class ShoppingCartModule { }
