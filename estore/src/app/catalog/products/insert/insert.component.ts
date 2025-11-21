@@ -5,7 +5,7 @@ import { CounterComponent } from '../counter/counter.component';
 @Component({
   selector: 'app-insert',
   standalone: true,
-  imports: [FormsModule,CounterComponent],
+  imports: [FormsModule],
   templateUrl: './insert.component.html',
   styleUrl: './insert.component.css'
 })

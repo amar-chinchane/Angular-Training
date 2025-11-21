@@ -1,0 +1,192 @@
+/* ---------------- HEADER ---------------- */
+.app-header {
+  background: #0d6efd;
+  padding: 16px 20px;
+  color: white;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.header-buttons button {
+  margin-left: 10px;
+}
+
+/* Buttons */
+.btn-primary {
+  background: #ffffff;
+  color: #0d6efd;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.logout-btn {
+  background: #dc3545;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-primary:hover,
+.logout-btn:hover {
+  opacity: 0.9;
+}
+
+/* ---------------- MAIN LAYOUT ---------------- */
+.order-container {
+  display: flex;
+  gap: 20px;
+  padding: 24px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.order-left {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-right {
+  flex: 1;
+}
+
+/* ---------------- CARD UI ---------------- */
+.order-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.order-card h2 {
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+/* ---------------- FORM ---------------- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.form-group textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+/* City + Pincode side-by-side */
+.inline-group {
+  display: flex;
+  gap: 20px;
+}
+
+.inline-group div {
+  flex: 1;
+}
+
+/* ---------------- PAYMENT SECTION ---------------- */
+.payment-options label {
+  display: block;
+  padding: 8px 0;
+  font-size: 15px;
+}
+
+/* ---------------- SUMMARY CARD ---------------- */
+.summary-card h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.total-price {
+  color: #0d6efd;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Place order button */
+.btn-checkout {
+  width: 100%;
+  background: #28a745;
+  color: white;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.btn-checkout:hover {
+  opacity: 0.9;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 900px) {
+  .order-container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-content {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .inline-group {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .logout-btn {
+    width: 100%;
+    margin-top: 6px;
+  }
+}

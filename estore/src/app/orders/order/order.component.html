@@ -1,0 +1,97 @@
+<!-- Header -->
+<header class="app-header">
+  <div class="header-content">
+    <h1 class="app-title">Order Summary</h1>
+    <div class="header-buttons">
+      <button class="btn-primary" (click)="goToCart()">🛒 Back to Cart</button>
+      <button class="logout-btn" (click)="logout()">🚪 Logout</button>
+    </div>
+  </div>
+</header>
+
+<!-- Main Container -->
+<div class="order-container">
+
+  <!-- Left: Delivery + Payment -->
+  <div class="order-left">
+
+    <!-- Delivery Details -->
+    <div class="order-card">
+      <h2>📍 Delivery Details</h2>
+
+      <form #addressForm="ngForm">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" [(ngModel)]="order.name" name="name" required />
+        </div>
+
+        <div class="form-group">
+          <label>Mobile</label>
+          <input type="tel" [(ngModel)]="order.mobile" name="mobile" required />
+        </div>
+
+        <div class="form-group">
+          <label>Address</label>
+          <textarea [(ngModel)]="order.address" name="address" required></textarea>
+        </div>
+
+        <div class="form-group inline-group">
+          <div>
+            <label>City</label>
+            <input type="text" [(ngModel)]="order.city" name="city" required />
+          </div>
+          <div>
+            <label>Pincode</label>
+            <input type="text" [(ngModel)]="order.pincode" name="pincode" required />
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Payment Section -->
+    <div class="order-card">
+      <h2>💳 Payment Method</h2>
+
+      <div class="payment-options">
+        <label>
+          <input type="radio" name="payment" value="cod" [(ngModel)]="order.paymentMethod" />
+          Cash on Delivery (COD)
+        </label>
+
+        <label>
+          <input type="radio" name="payment" value="online" [(ngModel)]="order.paymentMethod" />
+          Online Payment
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: Order Summary -->
+  <div class="order-right">
+    <div class="order-card summary-card">
+      <h2>🧾 Order Summary</h2>
+
+      <div class="summary-item" *ngFor="let item of cartItems">
+        <div>
+          <strong>{{ item.title }}</strong>
+          <p>Qty: {{ item.quantity }}</p>
+        </div>
+        <div>
+          ₹{{ item.price * item.quantity }}
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="summary-total">
+        <h3>Total Amount</h3>
+        <h2 class="total-price">₹{{ getTotalAmount() }}</h2>
+      </div>
+
+      <button class="btn-checkout" (click)="placeOrder()">
+        ✅ Place Order
+      </button>
+    </div>
+  </div>
+
+</div>

@@ -6,43 +6,65 @@ import { CartService } from '../cart.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../membership/auth.service';
 
-
 @Component({
   selector: 'app-cart',
+  standalone: true,
   templateUrl: './cart.component.html',
+  imports: [CommonModule, FormsModule],
   styleUrl: './cart.component.css'
 })
 export class CartComponent {
-  cartItems: CartItem[] = [];
-  totalPrice = 0;
 
-  constructor(private cartService: CartService,private router: Router,private authService: AuthService) { }
+  cartItems: CartItem[] = [];
+
+  constructor(
+    private cartService: CartService,
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
     this.loadCart();
   }
 
   loadCart() {
-    this.cartItems = this.cartService.getCartItems();
+    this.cartService.getCartItems().subscribe(items => {
+      this.cartItems = items;
+    });
   }
 
-  removeItem(id: number):void { 
-    this.cartService.removeFromCart(id); 
-    this.loadCart();
+  removeItem(id: number) {
+    this.cartService.removeFromCart(id).subscribe(() => {
+      this.loadCart();
+    });
   }
 
-  clearCart() { 
-      this.cartService.clearCart();
+  updateQuantity(item: Item) {
+    this.cartService.updateQuantity(item).subscribe(() => {
+      this.loadCart();
+    });
+  }
+
+  clearCart() {
+    this.cartService.clearCart().subscribe(() => {
       this.router.navigateByUrl('/productList');
-   }
-   goToProducts(){ this.router.navigateByUrl('/productList');}
-   logout(){
-    this.router.navigateByUrl('/signin');
-    this.authService.logout();
+    });
   }
-   updateQuantity(cartItem:Item){return 0;}
-   getTotalAmount(){
-    
-    return this.cartService.getTotalPrice();
+
+  getTotalAmount() {
+    return this.cartItems.reduce((sum, p) => sum + (p.price * p.quantity), 0);
+  }
+
+  checkout() {
+    this.router.navigateByUrl('/orders');
+  }
+
+  goToProducts() {
+    this.router.navigateByUrl('/productList');
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigateByUrl('/signin');
   }
 }

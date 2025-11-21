@@ -1,75 +1,131 @@
-<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" novalidate>
-  <table>
-    <tr>
-      <td><label>First Name:</label></td>
-      <td><input type="text" name="firstName" [(ngModel)]="customerModel.firstName" required minlength="3" maxlength="8"></td>
-    </tr>
+<div class="register-container">
+  <div class="register-card">
+    <h2 class="register-title">Create an Account</h2>
+    <p class="register-subtitle">Fill in your details to register</p>
 
-    <tr>
-      <td><label>Last Name:</label></td>
-      <td><input type="text" name="lastName" [(ngModel)]="customerModel.lastName" required></td>
-    </tr>
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" novalidate>
+      <!-- First & Last Name -->
+      <div class="form-row">
+        <div class="form-group half">
+          <label>First Name</label>
+          <input type="text" name="firstName" [(ngModel)]="customerModel.firstName" required minlength="3" maxlength="8"
+            placeholder="Enter first name" />
+        </div>
+        <div class="form-group half">
+          <label>Last Name</label>
+          <input type="text" name="lastName" [(ngModel)]="customerModel.lastName" required
+            placeholder="Enter last name" />
+        </div>
+      </div>
+      <!-- USERNAME -->
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" name="username" [(ngModel)]="registerModel.username" required placeholder="Enter username" />
+      </div>
 
-    <tr>
-      <td><label>Email:</label></td>
-      <td><input type="email" name="email" [(ngModel)]="customerModel.email" required></td>
-    </tr>
+      <!-- PASSWORD -->
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" [(ngModel)]="registerModel.password" required minlength="4"
+          placeholder="Enter password" />
+      </div>
 
-    <tr>
-      <td><label>Birth Date:</label></td>
-      <td><input type="date" name="birthDate" [(ngModel)]="customerModel.birthDate" required></td>
-    </tr>
+      <!-- ROLE -->
+      <div class="form-group">
+        <label>Role</label>
+        <select name="role" [(ngModel)]="registerModel.role" required>
+          <option value="">Select Role</option>
+          <option value="Student">Student</option>
+          <option value="Admin">Admin</option>
+          <option value="Manager">Manager</option>
+        </select>
+      </div>
 
-    <tr>
-      <td><label>Age:</label></td>
-      <td><input type="number" name="age" [(ngModel)]="customerModel.age" required></td>
-    </tr>
+      <!-- Email -->
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" [(ngModel)]="customerModel.email" required placeholder="Enter email address" />
+      </div>
 
-    <tr>
-      <td><label>Phone No:</label></td>
-      <td><input type="text" name="phoneNo" [(ngModel)]="customerModel.phoneNo" required></td>
-    </tr>
+      <!-- Birth Date and Age -->
+      <div class="form-row">
+        <div class="form-group half">
+          <label>Birth Date</label>
+          <input type="date" name="birthDate" [(ngModel)]="customerModel.birthDate" required />
+        </div>
+        <div class="form-group half">
+          <label>Age</label>
+          <input type="number" name="age" [(ngModel)]="customerModel.age" required placeholder="Enter age" />
+        </div>
+      </div>
 
-    <tr>
-      <td><label>Location:</label></td>
-      <td>
+      <!-- Phone -->
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="text" name="phoneNo" [(ngModel)]="customerModel.phoneNo" required
+          placeholder="Enter phone number" />
+      </div>
+
+      <!-- Location -->
+      <div class="form-group">
+        <label>Location</label>
         <select name="location" [(ngModel)]="customerModel.location" required>
           <option value="">Select</option>
           <option>Pune</option>
           <option>Mumbai</option>
           <option>Bangalore</option>
         </select>
-      </td>
-    </tr>
+      </div>
 
-    <tr>
-      <td><label>Membership:</label></td>
-      <td>
-        <label><input type="radio" name="memberShip" [(ngModel)]="customerModel.memberShip" value="gold" required> Gold </label>
-        <label><input type="radio" name="memberShip" [(ngModel)]="customerModel.memberShip" value="silver" required> Silver </label>
-        <label><input type="radio" name="memberShip" [(ngModel)]="customerModel.memberShip" value="platinum" required> Platinum </label>
-      </td>
-    </tr>
+      <!-- Membership -->
+      <div class="form-group">
+        <label>Membership</label>
+        <div class="radio-group">
+          <label>
+            <input type="radio" name="memberShip" [(ngModel)]="customerModel.memberShip" value="gold" required />
+            Gold
+          </label>
+          <label>
+            <input type="radio" name="memberShip" [(ngModel)]="customerModel.memberShip" value="silver" required />
+            Silver
+          </label>
+          <label>
+            <input type="radio" name="memberShip" [(ngModel)]="customerModel.memberShip" value="platinum" required />
+            Platinum
+          </label>
+        </div>
+      </div>
 
-    <tr>
-      <td><label>Status:</label></td>
-      <td><input type="checkbox" name="isRegistered" [(ngModel)]="customerModel.isRegistered"> Is Registered</td>
-    </tr>
+      <!-- Status -->
+      <div class="form-group checkbox-group">
+        <label>
+          <input type="checkbox" name="isRegistered" [(ngModel)]="customerModel.isRegistered" />
+          Is Registered
+        </label>
+      </div>
 
-    <tr>
-      <td><label>Source Of Information:</label></td>
-      <td>
+      <!-- Source of Information -->
+      <div class="form-group">
+        <label>Source of Information</label>
         <select multiple name="socialStatus" [(ngModel)]="customerModel.socialStatus">
           <option>Facebook</option>
           <option>Instagram</option>
           <option>Twitter</option>
           <option>LinkedIn</option>
         </select>
-      </td>
-    </tr>
+      </div>
 
-    <tr>
-      <td colspan="2"><button type="submit">Submit</button></td>
-    </tr>
-  </table>
-</form>
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="!registerForm.form.valid" class="btn-primary">
+        Register
+      </button>
+
+      <div class="extra-actions">
+        <p>Already have an account?</p>
+        <button type="button" class="btn-secondary" (click)="goToLogin()">
+          Sign In
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

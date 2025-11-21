@@ -1,79 +1,43 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Item as CartItem } from './models/Item';
+import { map, Observable } from 'rxjs';
+import { Router } from '@angular/router';
+
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  private storageKey = 'CartItemsStorage';
+  private apiUrl = "http://localhost:8000/cart";
 
-  constructor() {
-    // Initialize sessionStorage with demo data if empty
-    //if (!sessionStorage.getItem(this.storageKey)) {
+  constructor(private http: HttpClient,private router: Router,) { }
 
-
+  // Get all items
+  getCartItems(): Observable<CartItem[]> {
+    
+    return this.http.get<CartItem[]>(this.apiUrl);
   }
 
-  //Add Product to Cart
-  addToCart(item: CartItem): void {
-
-    const cartItems = JSON.parse(localStorage.getItem(this.storageKey) || '[]');
-    // let cartItems=[];
-    cartItems.push(item);
-    localStorage.setItem(this.storageKey, JSON.stringify(cartItems));
-
+  // Add item to cart (POST)
+  addToCart(item: CartItem) {
+    return this.http.post(this.apiUrl, item,{ responseType: 'text' });
   }
 
-  //Get All Cart Items
-  getCartItems(): CartItem[] {
-
-    const cartItems = localStorage.getItem(this.storageKey);
-    const Items = JSON.parse(cartItems!);
-    return Items;
-
+  // Update quantity (PUT)
+  updateQuantity(item: CartItem): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${item.id}`, item);
   }
 
-  //Update Quantity
-  updateQuantity(productId: number, quantity: number): void {
-    let items = this.getCartItems();
-    const item = items.find((i) => i.productId === productId);
-    if (item) {
-      item.quantity = quantity;
-      this.saveCart(items);
-    }
+  // Remove item (DELETE)
+  removeFromCart(id: number)  {
+    return this.http.delete(`${this.apiUrl}/${id}`, { responseType: 'text' });
+    // this.router.navigateByUrl('/cartItems');
+    
   }
 
-  //Remove Product from Cart
-  removeFromCart(productId: number): void {
-    let items = this.getCartItems();
-    items = items.filter((item) => item.productId !== productId);
-    this.saveCart(items);
-  }
-
-  //Clear Entire Cart
-  clearCart(): void {
-    localStorage.removeItem(this.storageKey);
-  }
-
-  //Calculate Total Items
-  getTotalItems(): number {
-     let items = this.getCartItems();
-     return items.length;
-  }
-
-  //Calculate Total Amount
-  getTotalPrice(): number {
-      let items = this.getCartItems();
-      let total = 0;
-      items.forEach((item) => {
-        total += item.price * item.quantity;
-      });
-      return total;
-  }
-
-  // Private helper
-  private saveCart(cart: CartItem[]): void {
-    //save data to sessionStorage
-    localStorage.setItem(this.storageKey, JSON.stringify(cart));
+  // Clear cart: loop through items OR backend API method if exists
+  clearCart(): Observable<any> {
+    return this.http.delete(this.apiUrl + "/clear");
   }
 }

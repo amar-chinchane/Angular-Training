@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
-export class Credential  {
-  constructor(public  email:string,public  password:string){  }
+export class Credential {
+  constructor(public email: string, public password: string) { }
 }
 
 @Component({
@@ -17,31 +17,47 @@ export class Credential  {
 })
 export class SignInComponent {
 
-  isValidUser:boolean=false;
-  user: Credential=new Credential("amar.chinchane@gmail.com","seed");
-  
- 
-  constructor(private svc:AuthService,private router: Router) {    }  //DI
+  user: Credential = new Credential("", "");
+
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   onSubmit(formData: any) {
     const form = formData.form.value;
-   
-    console.log(form.userEmail);
-    console.log(form.userPassword);
 
-    this.isValidUser= this.svc.validate(form.userEmail,form.userPassword);
-    if(this.isValidUser) 
-    {
-      console.log("Valid User !");
-     // sessionStorage.setItem(this.storageKey, JSON.stringify(cart));
-      this.router.navigateByUrl('/productList');
-    }
-    else {
-      console.log("Invalid User !");
-      alert('Invalid Credientials...!')
-    }
+    const loginRequest = {
+      username: form.userEmail,   // API expects username
+      password: form.userPassword
+    };
 
+    console.log("Sending Login Data:", loginRequest);
+
+    // ⭐ API LOGIN CALL
+    this.authService.login(loginRequest).subscribe(
+      (response: any) => {
+        console.log("Login Success:", response);
+
+        // If API returns token → save it
+        if (response.token) {
+          localStorage.setItem("token", response.token);
+        }
+
+        // Save logged in user info (optional)
+        localStorage.setItem("loggedInUser", loginRequest.username);
+
+        alert("Login Successful!");
+        this.router.navigateByUrl('/productList');
+      },
+      (error) => {
+        console.error("Login Error:", error);
+        alert(error.error.message || "Invalid Credentials!");
+      }
+    );
   }
 
-  goToRegister(): any {  this.router.navigateByUrl('/register');}
+  goToRegister(): any {
+    this.router.navigateByUrl('/register');
+  }
 }

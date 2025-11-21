@@ -26,25 +26,26 @@
 
       <tbody>
         <tr *ngFor="let c of cartItems">
-          <td>
-            <img [src]="c.imageUrl || 'assets/default-product.jpg'" [alt]="c.title" class="cart-image" />
+          <td data-label="Image">
+            <img [src]="c.imageUrl || 'assets/default-product.jpg'" class="cart-image" />
           </td>
-          <td>{{ c.title }}</td>
-          <td>₹{{ c.price }}</td>
-          <td>
-            <input
-              type="number"
-              [(ngModel)]="c.quantity"
-              min="1"
-              class="qty-input"
-              (change)="updateQuantity(c)"
-            />
+
+          <td data-label="Product">{{ c.title }}</td>
+
+          <td data-label="Price">₹{{ c.price }}</td>
+
+          <td data-label="Quantity">
+            <input type="number"
+                   [(ngModel)]="c.quantity"
+                   class="qty-input"
+                   (change)="updateQuantity(c)" />
           </td>
-          <td>₹{{ c.price * c.quantity }}</td>
-          <td>
-            <button class="btn-remove" (click)="removeItem(c.productId)">
-              🗑️ Remove
-            </button>
+
+          <td data-label="Total">₹{{ c.price * c.quantity }}</td>
+
+          <td data-label="Action">
+            <!-- FIX → use c.id instead of c.id -->
+            <button class="btn-remove" (click)="removeItem(c.id)">🗑️ Remove</button>
           </td>
         </tr>
       </tbody>
@@ -57,7 +58,7 @@
       </h3>
       <div class="footer-buttons">
         <button class="btn-danger" (click)="clearCart()">❌ Clear Cart</button>
-        <button class="btn-checkout">💳 Checkout</button>
+        <button class="btn-checkout" (click)="checkout()">💳 Checkout</button>
       </div>
     </div>
   </div>

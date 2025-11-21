@@ -1,4 +1,3 @@
-
 <!-- Header Section -->
 <header class="app-header">
   <div class="header-content">
@@ -19,24 +18,16 @@
 <!-- Product List Section -->
 <div class="product-list-container">
   <div class="product-grid">
-    <div class="product-card" *ngFor="let p of products">
-      <!--div class="product-image">
-        <img [src]="p.imageUrl || 'assets/default-product.jpg'" [alt]="p.name" />
-      </div>
-
-      <div class="product-info">
-        <h3 class="product-title">{{ p.name }}</h3>
-        <p class="product-desc">{{ p.description }}</p>
-        <p class="product-price">₹{{ p.price }}</p>
-      </div-->
+    <div class="product-card" *ngFor="let p of products" appProductHighlight [isDiscounted]="p.isDiscounted||false"
+      [isOutOfStock]="p.isOutOfStock||false" (quantityCount)="p.likes">
       <div class="card shadow-sm h-100">
         <div class="card-body">
           <app-details [product]="p"></app-details>
         </div>
-        <button class="btn-addcart" (click)="add_to_cart(p)">
-        + Add to Cart
-      </button>
-      </div>      
+        <button class="btn-addcart" (click)="add_to_cart(p)" [disabled]="p.isOutOfStock">
+          + Add to Cart
+        </button>
+      </div>
     </div>
   </div>
 </div>
