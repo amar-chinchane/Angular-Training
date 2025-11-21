@@ -3,6 +3,12 @@
 <p>{{product.description}}</p>
 <img src="{{product.imageurl}}" width="200" height="200"/>
 <p>Quantity: {{product.likes}}</p>
+<p *ngIf="product.isDiscounted" class="discount-text">
+    💸 {{ product.isDiscounted }}% OFF
+</p>
+<p *ngIf="product.isOutOfStock" class="out-of-stock-text">
+    ❌ Out of Stock
+</p>
 <app-counter [count]="product.likes"  (update)="onUpdate($event)">
 </app-counter>
 </div>

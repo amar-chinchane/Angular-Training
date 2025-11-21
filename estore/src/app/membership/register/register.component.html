@@ -8,83 +8,68 @@
       <div class="form-row">
         <div class="form-group half">
           <label>First Name</label>
-          <input
-            type="text"
-            name="firstName"
-            [(ngModel)]="customerModel.firstName"
-            required
-            minlength="3"
-            maxlength="8"
-            placeholder="Enter first name"
-          />
+          <input type="text" name="firstName" [(ngModel)]="customerModel.firstName" required minlength="3" maxlength="8"
+            placeholder="Enter first name" />
         </div>
         <div class="form-group half">
           <label>Last Name</label>
-          <input
-            type="text"
-            name="lastName"
-            [(ngModel)]="customerModel.lastName"
-            required
-            placeholder="Enter last name"
-          />
+          <input type="text" name="lastName" [(ngModel)]="customerModel.lastName" required
+            placeholder="Enter last name" />
         </div>
+      </div>
+      <!-- USERNAME -->
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" name="username" [(ngModel)]="registerModel.username" required placeholder="Enter username" />
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" [(ngModel)]="registerModel.password" required minlength="4"
+          placeholder="Enter password" />
+      </div>
+
+      <!-- ROLE -->
+      <div class="form-group">
+        <label>Role</label>
+        <select name="role" [(ngModel)]="registerModel.role" required>
+          <option value="">Select Role</option>
+          <option value="Student">Student</option>
+          <option value="Admin">Admin</option>
+          <option value="Manager">Manager</option>
+        </select>
       </div>
 
       <!-- Email -->
       <div class="form-group">
         <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          [(ngModel)]="customerModel.email"
-          required
-          placeholder="Enter email address"
-        />
+        <input type="email" name="email" [(ngModel)]="customerModel.email" required placeholder="Enter email address" />
       </div>
 
       <!-- Birth Date and Age -->
       <div class="form-row">
         <div class="form-group half">
           <label>Birth Date</label>
-          <input
-            type="date"
-            name="birthDate"
-            [(ngModel)]="customerModel.birthDate"
-            required
-          />
+          <input type="date" name="birthDate" [(ngModel)]="customerModel.birthDate" required />
         </div>
         <div class="form-group half">
           <label>Age</label>
-          <input
-            type="number"
-            name="age"
-            [(ngModel)]="customerModel.age"
-            required
-            placeholder="Enter age"
-          />
+          <input type="number" name="age" [(ngModel)]="customerModel.age" required placeholder="Enter age" />
         </div>
       </div>
 
       <!-- Phone -->
       <div class="form-group">
         <label>Phone Number</label>
-        <input
-          type="text"
-          name="phoneNo"
-          [(ngModel)]="customerModel.phoneNo"
-          required
-          placeholder="Enter phone number"
-        />
+        <input type="text" name="phoneNo" [(ngModel)]="customerModel.phoneNo" required
+          placeholder="Enter phone number" />
       </div>
 
       <!-- Location -->
       <div class="form-group">
         <label>Location</label>
-        <select
-          name="location"
-          [(ngModel)]="customerModel.location"
-          required
-        >
+        <select name="location" [(ngModel)]="customerModel.location" required>
           <option value="">Select</option>
           <option>Pune</option>
           <option>Mumbai</option>
@@ -97,33 +82,15 @@
         <label>Membership</label>
         <div class="radio-group">
           <label>
-            <input
-              type="radio"
-              name="memberShip"
-              [(ngModel)]="customerModel.memberShip"
-              value="gold"
-              required
-            />
+            <input type="radio" name="memberShip" [(ngModel)]="customerModel.memberShip" value="gold" required />
             Gold
           </label>
           <label>
-            <input
-              type="radio"
-              name="memberShip"
-              [(ngModel)]="customerModel.memberShip"
-              value="silver"
-              required
-            />
+            <input type="radio" name="memberShip" [(ngModel)]="customerModel.memberShip" value="silver" required />
             Silver
           </label>
           <label>
-            <input
-              type="radio"
-              name="memberShip"
-              [(ngModel)]="customerModel.memberShip"
-              value="platinum"
-              required
-            />
+            <input type="radio" name="memberShip" [(ngModel)]="customerModel.memberShip" value="platinum" required />
             Platinum
           </label>
         </div>
@@ -132,11 +99,7 @@
       <!-- Status -->
       <div class="form-group checkbox-group">
         <label>
-          <input
-            type="checkbox"
-            name="isRegistered"
-            [(ngModel)]="customerModel.isRegistered"
-          />
+          <input type="checkbox" name="isRegistered" [(ngModel)]="customerModel.isRegistered" />
           Is Registered
         </label>
       </div>
@@ -144,11 +107,7 @@
       <!-- Source of Information -->
       <div class="form-group">
         <label>Source of Information</label>
-        <select
-          multiple
-          name="socialStatus"
-          [(ngModel)]="customerModel.socialStatus"
-        >
+        <select multiple name="socialStatus" [(ngModel)]="customerModel.socialStatus">
           <option>Facebook</option>
           <option>Instagram</option>
           <option>Twitter</option>

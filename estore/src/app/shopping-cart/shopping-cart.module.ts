@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CartComponent } from './cart/cart.component';
 import { FormsModule } from '@angular/forms';
-
-
+import { CartComponent } from './cart/cart.component'; // standalone component
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule,FormsModule],
+  declarations: [],        // ❌ No standalone components here
+  imports: [
+    CommonModule,
+    FormsModule,
+    CartComponent          // ✅ Import standalone component
+  ],
+  exports: [
+    CartComponent          // Optional: export if used outside
+  ]
 })
 export class ShoppingCartModule { }
